@@ -13,6 +13,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -33,6 +37,9 @@ class SignUpActivity : ComponentActivity() {
 @Composable
 fun SignUpScreen() {
     val context = LocalContext.current;
+    var name by remember {mutableStateOf("")}
+    var email by remember {mutableStateOf("")}
+    var password by remember {mutableStateOf("")}
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -52,8 +59,8 @@ fun SignUpScreen() {
         Spacer(modifier = Modifier.height(16.dp))
         // Name input
         TextField(
-            value = "",
-            onValueChange = {},
+            value = name,
+            onValueChange = {name = it},
             label = { Text("Name") },
             modifier = Modifier.fillMaxWidth()
         )
@@ -61,8 +68,8 @@ fun SignUpScreen() {
 
         // Email input
         TextField(
-            value = "",
-            onValueChange = {},
+            value = email,
+            onValueChange = {email = it},
             label = { Text("Email") },
             modifier = Modifier.fillMaxWidth()
         )
@@ -70,8 +77,8 @@ fun SignUpScreen() {
 
         // Password input
         TextField(
-            value = "",
-            onValueChange = {},
+            value = password,
+            onValueChange = {password = it},
             label = { Text("Password") },
             visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier.fillMaxWidth()

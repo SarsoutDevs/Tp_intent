@@ -25,6 +25,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 
@@ -65,6 +69,8 @@ fun GreetingPreview() {
 
 @Composable
 fun LoginScreen() {
+    var username by remember {mutableStateOf("")};
+    var password by remember {mutableStateOf("")};
     val context = LocalContext.current
     Column(
         modifier = Modifier
@@ -85,8 +91,8 @@ fun LoginScreen() {
         Spacer(modifier = Modifier.height(16.dp))
         // Email input
         TextField(
-            value = "",
-            onValueChange = {},
+            value = username,
+            onValueChange = {username = it},
             label = { Text("Email") },
             modifier = Modifier.fillMaxWidth()
         )
@@ -94,8 +100,8 @@ fun LoginScreen() {
 
         // Password input
         TextField(
-            value = "",
-            onValueChange = {},
+            value = password,
+            onValueChange = {password = it},
             label = { Text("Password") },
             visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier.fillMaxWidth()
